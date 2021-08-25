@@ -5,6 +5,7 @@ import {
   ActivityIndicator,
   TouchableHighlight,
   Dimensions,
+  Text
 } from 'react-native';
 
 import Carousel, {Pagination} from 'react-native-snap-carousel'; //Thank From distributer(s) of this lib
@@ -15,7 +16,7 @@ import styles from './SliderBox.style';
 // onCurrentImagePressed
 // sliderBoxHeight
 // parentWidth
-// dotColor 
+// dotColor
 // inactiveDotColor
 // dotStyle
 // paginationBoxVerticalPadding
@@ -90,7 +91,6 @@ export class SliderBox extends Component {
           onPress={this.onCurrentImagePressedHandler}
           activeOpacity={activeOpacity}
         >
-
           <ImageComponent
             style={[
               {
@@ -113,6 +113,7 @@ export class SliderBox extends Component {
             {...this.props}
           />
         </TouchableHighlight>
+        {this.props.appendComponent && this.props.appendComponent(this.props.appendComponentItems[index] ? this.props.appendComponentItems[index] : {}, index)}
         {!this.state.loading[index] && (
           <LoaderComponent
             index={index}
