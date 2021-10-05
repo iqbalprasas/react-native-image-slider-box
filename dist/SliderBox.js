@@ -48,6 +48,15 @@ export class SliderBox extends Component {
 
   componentDidMount() {
     //let a = [...Array(this.props.images.length).keys()].map((i) => false);
+    this.repeatInterval = setInterval(() => {
+      this._ref.snapToItem(0);
+    }, 12000);
+  }
+
+  componentWillUnmount() {
+    if (this.repeatInterval) {
+      clearInterval(this.repeatInterval);
+    }
   }
 
   onCurrentImagePressedHandler() {
@@ -151,6 +160,11 @@ export class SliderBox extends Component {
         carouselRef={this._ref}
         inactiveDotOpacity={0.8}
         tappableDots={!!this._ref}
+        dotElement={
+          <View style={{height: 16, width: 16, borderWidth: 1, borderColor: '#FFC33A', borderRadius: 20, padding: 2, marginHorizontal: 4}}>
+            <View style={{height: 10, width: 10, borderRadius: 10, backgroundColor: '#FFC33A'}} />
+          </View>}
+        inactiveDotElement={<View style={{height: 10, width: 10, borderRadius: 10, backgroundColor: '#f0f0f0', marginHorizontal: 4}} />}
         containerStyle={[
           styles.paginationBoxStyle,
           paginationBoxVerticalPadding
